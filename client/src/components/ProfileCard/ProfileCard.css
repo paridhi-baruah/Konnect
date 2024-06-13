@@ -1,0 +1,119 @@
+.ProfileCard {
+    border-radius: 2vw;
+    position: relative;
+    margin: 1.5vw 0;
+    margin-left: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vw;
+    background: white;
+    box-shadow: 0.2vw 0.2vw rgba(225, 223, 223, 0.1);
+    overflow: hidden;
+}
+
+.Profile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Profile img {
+    width: 50vw;
+    max-width: 100%;
+    position: relative;
+    border-radius: 2vw 2vw 0 0;
+}
+
+.ProfileName {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vw;
+    margin-top: -3.25vw;
+}
+
+.ProfileName img {
+    border-radius: 50%;
+    width: 6.5vw;
+    height: 6.5vw;
+    border: 0.3vw solid white;
+    box-shadow: var(--profileShadow);
+}
+
+.UserName {
+    padding-top: 1.5vw;
+    text-align: center;
+}
+
+.Profile-info {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.2vw 0;
+    border-top: 0.1vw solid rgb(192, 190, 190);
+    border-bottom: 0.1vw solid rgb(192, 190, 190);
+}
+
+.followers, .following {
+    text-align: center;
+    padding: 0vw 2vw;
+}
+.followers p, .following p {
+    color: var(--gray);
+    font-weight: 500;
+}
+.My-Profile {
+    padding: 0.5vw 0;
+    color: orange;
+    cursor: pointer;
+    text-align: center;
+}
+.vl{
+    margin: 0.5vw 0vw;
+    width: 0.1vw;
+    background-color:rgb(192, 190, 190);
+}
+@media only screen and (max-width:1024px) {
+    .UserName {
+        padding-top: 0vw;
+    }
+    .Profile-info{
+        padding: 0;
+    }
+    .vl{
+        margin: 2vw 0;
+    }
+    .My-Profile{
+        padding: 0;
+    }
+}
+@media only screen and (max-width:768px) {
+    .UserName h3{
+        padding: 0;
+        padding-top: 1VW;
+        font-size: 2.1vw;
+        margin: 0vw;
+    }
+    .UserName p{
+        margin: 0;
+        padding-bottom: 1vw;
+        font-size: 1.5vw;
+    }
+    .followers, .following {
+        font-size: 1.5vw;
+
+    }
+    .followers h3, .following h3 {
+        margin: 0;
+        margin-top:2.2vw ;
+    }
+    .followers p, .following p {
+        margin: 0;
+    }
+    .My-Profile{
+        font-size: 1.7vw;
+    }
+}

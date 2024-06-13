@@ -1,0 +1,65 @@
+.Login{
+    flex: 1;
+}
+.a-login{
+    width: 30vw;
+    background: white;
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1vw;
+}
+.a-login h2{
+    margin-bottom: 2vw;
+}
+.a-login input{
+    background: rgba(223, 222, 222, 0.568);
+    margin: 1vw;
+    margin-top: 0vw;
+    border: none;
+    border-radius: 1vw;
+    padding-left: 1vw;
+    height: 3vw;
+    outline: none;
+    font-size: 1vw;
+    width: 26vw;
+}
+.Login-button{
+    background: linear-gradient(50deg,rgb(5, 101, 255),rgb(9, 173, 244) 100%);
+    margin-left: 1vw;
+    padding: 0.5vw 1.5vw;
+    border-radius: 0.5vw;
+    color: white;
+    cursor: pointer;
+    border: 0.1vw transparent solid;
+}
+.Login-button:hover{
+    cursor: pointer;
+    color: rgb(5, 101, 255);
+    background: transparent;
+    border: 0.1vw rgb(5, 101, 255) solid;
+}
+.Login-button:disabled{
+    pointer-events: none;
+    background: silver;
+    border: none;
+}
+.has-acc{
+    padding-top: 0.3vw;
+    display: flex;
+    align-items: center;
+}
+@media only screen and (max-width:1024px){
+    .a-login h2{
+        font-size: 2.1vw;
+    }
+    .has-acc{
+        font-size: 1.2vw;
+    }
+}
+@media only screen and (max-width:768px){
+    .Login-button{
+        font-size: 1.2vw;
+    }
+}

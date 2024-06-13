@@ -1,0 +1,14 @@
+.Navbar{
+    padding-left: 0.8vw;
+    display: flex;
+    align-items: center;
+    gap: 4.75vw;
+}
+.Navbar img{
+    width: 1.5vw;
+    height: 1.5vw;
+    cursor: pointer;
+}
+.setting{
+    cursor: pointer;
+}

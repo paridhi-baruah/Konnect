@@ -1,0 +1,121 @@
+.ProfileModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(0.4vw);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.modal-content {
+  position: relative;
+  padding: 1vw;
+  padding-right:0;
+  margin-top: 10vw;
+  margin-bottom: 32vw;
+  background: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 0.5vw;
+  box-shadow: var(--profileShadow);
+}
+
+.modal-content svg {
+  cursor: pointer;
+  position: absolute;
+  top: 3%;
+  right: 2%;
+}
+
+.info-details {
+  width: 39vw;
+  
+}
+
+.info-details input {
+  background: rgba(223, 222, 222, 0.568);
+  margin-right: 0.5vw;
+  padding-left: 0.5vw;
+  margin-bottom: 1vw;
+  border: none;
+  border-radius: 1vw;
+  width: 18vw;
+  height: 3vw;
+  outline: none;
+  font-size: 1vw;
+}
+
+#work {
+  width: 37vw;
+}
+
+.info-img {
+    /* padding-left: 3vw; */
+  margin-top: 1vw;
+  display: flex;
+  font-size: 0.8vw;
+  justify-content: space-between;
+  align-items: center;
+}
+.update{
+    margin-top: 1vw;
+    margin-right: 1vw;
+    background: linear-gradient(50deg,rgb(5, 101, 255),rgb(9, 173, 244) 100%);
+    align-self: flex-end;
+    padding: 0.5vw 1.5vw;
+    border-radius: 0.5vw;
+    color: white;
+    cursor: pointer;
+    border: 0.1vw transparent solid;
+}
+.update:hover{
+    cursor: pointer;
+    color: rgb(5, 101, 255);
+    background: transparent;
+    border: 0.1vw rgb(5, 101, 255) solid;
+}
+
+@media only screen and (max-width:1024px) {
+  
+  .info-details {
+    width: 50vw;
+  }
+  .info-details input {
+    width: 23.5vw;
+  }
+  #work {
+    width: 48vw;
+  }  
+  .info-img {
+  padding-left: 2vw;
+  gap: 0.5vw;
+  font-size: 1vw;
+}
+}
+@media only screen and (max-width:768px) {
+  
+  .info-details {
+    width: 70vw;
+  }
+  .info-details input {
+    margin-right: 0.5vw;
+    padding-left: 0.5vw;
+    margin-bottom: 1vw;
+    width: 33.5vw;
+    height: 3vw;
+  }
+  #work {
+    width: 68vw;
+  }  
+  .update{
+    padding: 0.5vw 2vw;
+    font-size: 1.5vw;
+  }
+}

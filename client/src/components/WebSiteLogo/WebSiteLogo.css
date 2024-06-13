@@ -1,0 +1,31 @@
+.WebSiteLogo{
+    padding-right: 2vw;
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap:2vw;
+}
+.WebSiteLogo img{
+    width: 5vw;
+}
+.social-media{
+    text-align: center;
+}
+.social-media h1{
+    color: rgb(254, 153, 3);
+    font-size: 3vw;
+    margin: 0;
+}
+.social-media h3{
+    margin: 0;
+}
+@media only screen and (max-width:1024px) {
+    .social-media h1{
+        font-size: 3.5vw;
+    }
+    .social-media h3{
+        font-size: 1.6vw;
+    }
+}
