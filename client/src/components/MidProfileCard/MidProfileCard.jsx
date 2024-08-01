@@ -2,13 +2,16 @@ import React from 'react';
 import "./MidProfileCard.css";
 import { useSelector } from 'react-redux';
 const MidProfileCard=()=>{
-    const {user}=useSelector((state)=>state.AuthReducer.authData);
+    const {user}=JSON.parse(localStorage.getItem('profile'));
     const posts=useSelector((state)=>state.PostReducer.posts);
     const serverPublic=process.env.REACT_APP_PUBLIC_FOLDER;
     if(!user){
         return(<div>Loading...</div>)
     }
-        
+    console.log("user",user);
+    console.log("posts",posts);
+    const userPosts = posts.filter((post) => post.userId === user._id);
+    console.group("userposts",userPosts);
     return(
         <div className="MidProfileCard">
             <img src={user.coverPicture?serverPublic+user.coverPicture:serverPublic+"defaultCover.jpg"} alt="" className="MidProfile"/>
@@ -32,7 +35,7 @@ const MidProfileCard=()=>{
                 </div>
                 <div className="vl"></div>
                 <div className="Mid_following">
-                <h3>{posts.filter((post)=>post.userId===user._id).length}</h3>
+                <h3>{userPosts.length}</h3>
                 <p>Posts</p>
                 </div>
             </div>       

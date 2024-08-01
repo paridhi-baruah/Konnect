@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {uploadImage} from '../../actions/UploadActions.js';
 import { updateUser } from '../../actions/UserActions.js';
+import { getUser } from '../../api/UserRequests.js';
 
 function ProfileModal({onClose,data}){
     const[profileImage,setProfileImage]=useState(null);
@@ -14,6 +15,7 @@ function ProfileModal({onClose,data}){
     const {password,...otherdetails}=data;
     const[formData,setFormData]=useState(otherdetails);
     const {user}=useSelector((state)=>state.AuthReducer.authData);
+    // console.log("data",data);
     const ProfileImageChange=(e)=>{
         if (e.target.files && e.target.files[0]){
             let img=e.target.files[0];
@@ -22,6 +24,7 @@ function ProfileModal({onClose,data}){
     }
     const handleChange=(e)=>{
         setFormData({...formData,[e.target.name]:e.target.value});
+        console.log("print");
     }
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -54,7 +57,7 @@ function ProfileModal({onClose,data}){
                     console.log(err);
                 }
             }
-        dispatch(updateUser(params.id,userdata));
+        dispatch(updateUser(params.id,{user:userdata}));
         onClose();
     }
     return(
@@ -76,6 +79,7 @@ function ProfileModal({onClose,data}){
                         Cover Image
                         <input type="file" id="cover-image" name="coverPicture" onChange={ProfileImageChange}/>
                 </div>
+                <span style={{color:'red',paddingTop:'0.75vw',fontSize:'1vw'}}>**Reload the page once details are updated**</span>
                 <button className='update' onClick={handleSubmit}>Update</button>
             </div>
         </div>

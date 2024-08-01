@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Followers.css";
-import { FollowerData} from '../../Data/FollowerData';
-const Followers=()=>{
-    return(
-        <div className="Followers"> 
-        <h2>Who is following you</h2>
-        {FollowerData.map((follower,id)=>{
-            return(
-                <div className="follower-info">
-                <img src={follower.img} alt="" />
-                <div className="user-id">
-                    <h3>{follower.name}</h3>
-                    <p>@{follower.username}</p>
-                </div>
-                <button className="follow-button">
-                    Follow
-                </button>
-            </div>
-            )
-        })}
-        </div>
-    )
+import User from '../User/User.jsx';
+import { getAllUsers } from '../../api/UserRequests.js';
 
-}
+const Followers = () => {
+    const user = JSON.parse(localStorage.getItem('profile'));
+    const [persons, setPersons] = useState([]);
+
+    useEffect(() => {
+        const fetchAllUsers = async () => {
+            const { data } = await getAllUsers();
+            setPersons(data);
+            console.log("data", data);
+        };
+        fetchAllUsers();
+    }, []);
+
+    return (
+        <div className="Followers">
+            <h2>People you may know</h2>
+            {persons.map((person, id) => {
+                if (person._id !== user.user._id) {
+                    return (
+                        <User person={person} key={id} />
+                    );
+                }
+                return null;
+            })}
+        </div>
+    );
+};
+
 export default Followers;

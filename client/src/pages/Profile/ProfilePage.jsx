@@ -4,6 +4,7 @@ import ProfileLeft from '../../components/ProfileLeft/ProfileLeft';
 import RightSide from '../../components/RightSide/RightSide';
 import ProfileMid from '../../components/ProfileMid/ProfileMid';
 const ProfilePage=()=>{
+    
     return(
         <div className="ProfilePage">
            <ProfileLeft/> 

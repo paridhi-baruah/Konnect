@@ -2,7 +2,24 @@ import userModel from "../Models/userModel.js";
 import bcrypt from'bcrypt';
 import jwt from 'jsonwebtoken';
 
-//get user
+//get all users
+export const getAllUsers=(req,res)=>{
+    const id=req.params.id;
+    userModel.find()
+    .then((result)=>{
+    { 
+        result=result.map((user)=>{
+            const{password,...otherDetails}=user._doc  //password is taken away from user
+            return otherDetails;
+        })  
+        res.status(200).json(result);}
+    })
+    .catch((err)=>{
+        res.status(500).json(err);
+    })
+}
+
+//get a user
 export const getUser=(req,res)=>{
     const id=req.params.id;
     userModel.findById(id)
@@ -25,7 +42,8 @@ export const getUser=(req,res)=>{
 //update user
 export const updateUser=(req,res)=>{
     const id=req.params.id;
-    const {_id,currentAdminStatus, password}=req.body;
+    const {_id,currentAdminStatus, password}=req.body.user;
+    console.log(req.body.user);
     if(id==_id)
         {
             if(password)
@@ -36,7 +54,7 @@ export const updateUser=(req,res)=>{
                     })
                     .then((hashedpassword)=>{
                         req.body.password=hashedpassword;
-                        return userModel.findByIdAndUpdate(id,req.body,{new:true});
+                        return userModel.findByIdAndUpdate(id,req.body.user,{new:true});
                     })
                     .then((result)=>{
                         if(result)
@@ -54,7 +72,7 @@ export const updateUser=(req,res)=>{
                 }
             else
                 {
-                    userModel.findByIdAndUpdate(id,req.body,{new:true})
+                    userModel.findByIdAndUpdate(id,req.body.user,{new:true})
                     .then((result)=>{
                         if(result)
                             res.status(200).json(result);
@@ -94,16 +112,16 @@ export const deleteUser=(req,res)=>{
 //follow a user
 export const followUser=async(req,res)=>{
     const id=req.params.id;
-    const {currentId}=req.body;
-    if(currentId!=id)
+    const {_id}=req.body;
+    if(_id!=id)
         {
             try
             {
                 const followUser= await userModel.findById(id);
-                const followingUser= await userModel.findById(currentId); 
-                if(!followUser.followers.includes(currentId))
+                const followingUser= await userModel.findById(_id); 
+                if(!followUser.followers.includes(_id))
                     {
-                        await followUser.updateOne({$push:{followers:currentId}});
+                        await followUser.updateOne({$push:{followers:_id}});
                         await followingUser.updateOne({$push:{followings:id}});
                         res.status(200).json("User followed");
                     }
@@ -125,15 +143,15 @@ export const followUser=async(req,res)=>{
 //unfollow user
 export const unfollowUser=async(req,res)=>{
     const id=req.params.id;
-    const {currentId}=req.body;
-    if(currentId!=id)
+    const {_id}=req.body;
+    if(_id!=id)
         {
             try{
                 const followedUser=await userModel.findById(id);
-                const followingUser=await userModel.findById(currentId);
-                if(followedUser.followers.includes(currentId))
+                const followingUser=await userModel.findById(_id);
+                if(followedUser.followers.includes(_id))
                     {
-                        await followedUser.updateOne({$pull: {followers:currentId}});
+                        await followedUser.updateOne({$pull: {followers:_id}});
                         await followingUser.updateOne({$pull:{followings:id}});
                         res.status(200).json("User unfollowed");
                     }

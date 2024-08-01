@@ -15,10 +15,14 @@ const AuthReducer=(
         return{...state,updateloading:true,error:false};
       case "UPDATE_SUCCESS":
           console.log("action",action.data);
-          localStorage.setItem("profile",JSON.stringify(action?.data));
+            localStorage.setItem("profile",JSON.stringify({user:action?.data}));
       return{...state,authData:action.data,updateloading:false,error:false};
       case "UPDATE_FAIL":
           return{...state,updateloading:false,error:true}; 
+      case "FOLLOW":
+          return{...state,authData:{...state.authData,user:{...state.authData.user,followings:[...state.authData.user.followings, action.data]}}};
+          case "UNFOLLOW":
+            return{...state,authData:{...state.authData,user:{...state.authData.user,followings:state.authData.user.followings.filter((personId)=>personId!==action.data)}}};
       case "LOG_OUT":
           localStorage.clear();
           return{...state,authData:null,loading:false,error:false};   

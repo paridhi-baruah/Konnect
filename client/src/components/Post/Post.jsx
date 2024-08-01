@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './Post.css';
 import like from '../../img/like.png';
 import comment from '../../img/comment.png';
 import share from '../../img/share.png';
 import notlike from '../../img/notlike.png';
-import { useSelector } from 'react-redux';
-import { LikedPost } from '../../api/PostRequests';
+import { useDispatch } from 'react-redux';
+import { updatePost } from '../../actions/PostActions';
 
 const Post = ({ post }) => {
-    const { user } = useSelector((state) => state.AuthReducer.authData);
-    const [liked, setLiked] = useState(post.likes.includes(user._id));
+    const { user } = JSON.parse(localStorage.getItem('profile'));
+    const [liked, setLiked] = useState(false);
     const [likes, setLikes] = useState(post.likes.length);
+    const dispatch = useDispatch();
+    const localPosts = JSON.parse(localStorage.getItem('posts')) || [];
+    useEffect(() => {
+        const localPost = localPosts.find(localPost => localPost._id === post._id);
+        if (localPost) {
+            setLiked(localPost.likes.includes(user._id));
+            setLikes(localPost.likes.length);
+        }
+    }, [post._id, user._id]);
 
     const handleLike = () => {
-        setLiked((prev) => !prev);
-        LikedPost(post._id,user._id);
-        liked ? setLikes((prev) => prev - 1) : setLikes((prev) => prev + 1);
+        dispatch(updatePost(post._id, user._id));
+        setLiked((prevLiked) => !prevLiked);
+        setLikes((prevLikes) => liked ? prevLikes - 1 : prevLikes + 1);
     };
 
     return (

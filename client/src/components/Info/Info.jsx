@@ -2,19 +2,16 @@ import React, { useEffect, useState } from 'react';
 import "./Info.css";
 import { UilPen } from '@iconscout/react-unicons';
 import ProfileModal from '../ProfileModal/ProfileModal';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link,useNavigate, useParams } from 'react-router-dom';
 import * as UserApi from '../../api/UserRequests.js';
-import { logOut } from '../../actions/AuthActions.js';
 
 const Info = () => {
     const [ModalOpen, setModalOpen] = useState(false);
-    const dispatch = useDispatch();
     const params = useParams();
+    const navigate=useNavigate();
     const profileUserId = params.id;
     const [profileUser, setProfileUser] = useState({});
-    const { user } = useSelector((state) => state.AuthReducer.authData);
-
+    const {user}=JSON.parse(localStorage.getItem('profile'));
     useEffect(() => {
         const fetchProfileUser = async () => {
             // Ensuring that the user object is available
@@ -27,22 +24,15 @@ const Info = () => {
                 // console.log(profileUser);
             }
         };
-        // fetchProfileUser();
-        if(user)setProfileUser(user);
-        else 
-        // console.log(user);
-        console.log("akshat");
-    }, [user]);
-    
-    console.log("user",user);
+        fetchProfileUser();
+    }, []);
     const handleLogout = () => {
-      dispatch(logOut());
+        localStorage.clear();
+        window.location.reload();
     };
-    console.log(profileUser);
     if(!user){
-        return(<div>Loading...</div>)
+        return(navigate('/auth'))
     }
-
     return (
         <div className="Info">
             <div className='info-title'>

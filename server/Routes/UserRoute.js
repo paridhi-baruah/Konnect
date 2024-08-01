@@ -1,11 +1,13 @@
 import express from 'express';
-import {deleteUser, followUser, getUser, updateUser,unfollowUser} from '../Controllers/UserController.js';
+import {getAllUsers,deleteUser, followUser, getUser, updateUser,unfollowUser} from '../Controllers/UserController.js';
+import AuthMiddleware from '../AuthMiddleware/AuthMiddleware.js';
 
 const router=express.Router();
 
+router.get('/',getAllUsers);
 router.get('/:id',getUser);
 router.put('/:id',updateUser);
-router.delete('/:id',deleteUser);
-router.put('/:id/follow',followUser);
-router.put('/:id/unfollow',unfollowUser);
+router.delete('/:id',AuthMiddleware,deleteUser);
+router.put('/:id/follow',AuthMiddleware,followUser);
+router.put('/:id/unfollow',AuthMiddleware,unfollowUser);
 export default router;

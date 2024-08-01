@@ -9,8 +9,6 @@ const Profile=()=>{
             <LogoSearch/>
             <ProfileCard/>
             <Followers/>
-            {/* <ProfileCard/> */}
-            {/* <FollowingCard/> */}
         </div>
     )
 

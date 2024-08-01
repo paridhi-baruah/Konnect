@@ -16,7 +16,7 @@ const PostShare=()=>{
     const videoRef=useRef();
     const desc=useRef();
     const dispatch=useDispatch();
-    const {user}=useSelector((state)=>state.AuthReducer.authData);
+    const {user}=JSON.parse(localStorage.getItem('profile'));
     const serverPublic=process.env.REACT_APP_PUBLIC_FOLDER;
     function ImageChange(e){
         if (e.target.files && e.target.files[0]){
