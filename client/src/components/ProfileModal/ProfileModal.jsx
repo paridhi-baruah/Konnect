@@ -79,7 +79,7 @@ function ProfileModal({onClose,data}){
                         Cover Image
                         <input type="file" id="cover-image" name="coverPicture" onChange={ProfileImageChange}/>
                 </div>
-                <span style={{color:'red',paddingTop:'0.75vw',fontSize:'1vw'}}>**Reload the page once details are updated**</span>
+                <span style={{color:'red',paddingTop:'1.2vw',fontSize:'0.9vw'}}>**Reload the page once details are updated**</span>
                 <button className='update' onClick={handleSubmit}>Update</button>
             </div>
         </div>

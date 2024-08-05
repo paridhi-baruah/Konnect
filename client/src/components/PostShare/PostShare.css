@@ -19,8 +19,12 @@
 }
 .share-info img{
     border-radius:50% ;
-    width: 3.75vw;
-    height: 3.75vw;
+    width: 3vw;
+    height: 3vw;
+}
+.gemini-logo{
+    height: 2vw;
+    cursor: pointer;
 }
 .share-info input{
     background: rgba(223, 222, 222, 0.568);
@@ -28,7 +32,7 @@
     border-radius: 0.5vw;
     padding-left: 1.3vw;
     height: 2.5vw;
-    width: 41.7vw;
+    width: 39vw;
     outline: none;
     font-size: 1.2vw;
 }
@@ -108,6 +112,14 @@
     right:2%;
     z-index: 1;
 }
+.desc-input-container{
+    display:flex;
+    align-items: center;
+}
+.desc-input-container svg{
+    cursor:pointer;
+}
+
 @media only screen and (max-width:1024px) {
     .post-options{
         gap:2vw;
