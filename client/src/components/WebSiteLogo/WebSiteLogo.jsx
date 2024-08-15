@@ -6,7 +6,7 @@ const WebSiteLogo=()=>{
         <div className="WebSiteLogo">
            <img src={logo} alt="" /> 
            <div className="social-media">
-                <h1>VividVista</h1>
+                <h1>Konnect</h1>
                 <h3>Explore the ideas throughout the world</h3>
            </div>
         </div>
